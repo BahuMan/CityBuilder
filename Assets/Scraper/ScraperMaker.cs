@@ -101,7 +101,7 @@ public class ScraperMaker : MonoBehaviour {
         mesh.Clear();
 
         float length = 1f;
-        float depth = 1f;
+        float depth = 1.5f;
 
         #region Vertices
         Vector3 p0 = new Vector3(-length * .5f, 0f, depth * .5f);
@@ -169,8 +169,10 @@ public class ScraperMaker : MonoBehaviour {
         #region UVs
         Vector2 _00 = new Vector2(0f, 0f);
         Vector2 _10 = new Vector2(1f, 0f);
-        Vector2 _01 = new Vector2(0f, height);
-        Vector2 _11 = new Vector2(1f, height);
+        Vector2 _01 = new Vector2(0f, 1f);
+        Vector2 _11 = new Vector2(1f, 1f);
+        Vector2 _0h = new Vector2(0f, height);
+        Vector2 _1h = new Vector2(1f, height);
 
         Vector2[] uvs = new Vector2[]
         {
@@ -178,16 +180,16 @@ public class ScraperMaker : MonoBehaviour {
 	_11, _01, _00, _10,
  
 	// Left
-	_11 , _01, _00, _10,
+	_1h , _0h, _00, _10,
  
 	// Front
-	_11, _01, _00, _10,
+	_1h, _0h, _00, _10,
  
 	// Back
-	_11, _01, _00, _10,
+	_1h, _0h, _00, _10,
  
 	// Right
-	_11, _01, _00, _10,
+	_1h, _0h, _00, _10,
  
 	// Top
 	_11, _01, _00, _10,
@@ -229,6 +231,7 @@ public class ScraperMaker : MonoBehaviour {
         mesh.uv = uvs;
         mesh.triangles = triangles;
 
+        mesh.RecalculateNormals();
         mesh.RecalculateBounds();
         mesh.Optimize();
 
